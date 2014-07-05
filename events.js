@@ -1,10 +1,10 @@
 
 var Events = function() {
   
-  this.handlers = []
+  var handlers = []
 
   this.on = function( type, handler ) {
-    this.handlers.push({
+    handlers.push({
       type: type,
       handler: handler
     })
@@ -12,12 +12,12 @@ var Events = function() {
 
   this.off = function( type, handler ) {
     var i = 0
-    var len = this.handlers.length
+    var len = handlers.length
     var ev
     for ( ; i<len; i++ ) {
-      ev = this.handlers[i]
+      ev = handlers[i]
       if ( ev === undefined || ( ev.type == type && ( !handler || handler == ev.handler ) ) )
-        this.handlers.splice(i, 1)
+        handlers.splice(i, 1)
     }
   }
 
@@ -32,7 +32,7 @@ var Events = function() {
   this.trigger = function( type, params, context ) {
     context = context || this
     var i = 0
-    var len = this.handlers.length
+    var len = handlers.length
     var ev
     var obj = { type: type }
     if ( typeof params == 'object' ) {
@@ -40,7 +40,7 @@ var Events = function() {
         obj[prop] = params[prop]
     }
     for ( ; i<len; i++ ) {
-      ev = this.handlers[i]
+      ev = handlers[i]
       if ( ev && ev.type == type )
         ev.handler.call(context, obj)
     }
