@@ -1,7 +1,7 @@
 {
   "name": "ainojs-events",
   "version": "1.0.1",
-  "description": "Simple event interface, sutable for prototype mixin",
+  "description": "Simple event interface, suitable for prototype mixin",
   "repository": {
     "type": "git",
     "url": "https://github.com/aino/ainojs-events"
