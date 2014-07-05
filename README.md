@@ -11,7 +11,7 @@ Example:
     Events.call(GreatStuff.prototype)
 
     GreatStuff.prototype.whatever = function() {
-      this.trigger('whatever', { foo: 'bar' }
+      this.trigger('whatever', { foo: 'bar' })
     }
 
     // [...]
