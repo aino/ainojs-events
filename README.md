@@ -1,14 +1,14 @@
 Events
 ------
 
-Simple event interface, suitable for prototype mixin.
+Simple event interface, suitable for mixin.
 
 Example:
 
-    var GreatStuff = function() {}
-
-    // apply the mixin
-    Events.call(GreatStuff.prototype)
+    var GreatStuff = function() {
+      // Apply the mixin
+      Events.call(this)
+    }
 
     GreatStuff.prototype.whatever = function() {
       this.trigger('whatever', { foo: 'bar' })
