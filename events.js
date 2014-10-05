@@ -8,6 +8,7 @@ var Events = function() {
       type: type,
       handler: handler
     })
+    return this
   }
 
   this.off = function( type, handler ) {
@@ -19,6 +20,7 @@ var Events = function() {
       if ( ev === undefined || ( ev.type == type && ( !handler || handler == ev.handler ) ) )
         handlers.splice(i, 1)
     }
+    return this
   }
 
   this.once = function( type, handler ) {
@@ -26,7 +28,7 @@ var Events = function() {
       handler.call( this )
       this.off( type, fn )
     }.bind(this)
-    this.on( type, fn )
+    return this.on( type, fn )
   }
 
   this.trigger = function( type, params, context ) {
