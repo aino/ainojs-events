@@ -46,6 +46,7 @@ var Events = function() {
       if ( ev && ev.type == type )
         ev.handler.call(context, obj)
     }
+    return this
   }
   return this
 }
