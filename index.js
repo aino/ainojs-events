@@ -1,4 +1,3 @@
-
 var Events = function() {
   
   var handlers = []
