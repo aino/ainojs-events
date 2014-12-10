@@ -11,10 +11,9 @@ var Events = function() {
   }
 
   this.off = function( type, handler ) {
-    var i = 0
-    var len = handlers.length
+    var i = handlers.length
     var ev
-    for ( ; i < len; i++ ) {
+    while ( i-- > -1 ) {
       ev = handlers[i]
       if ( ev === undefined || ( ev.type == type && ( !handler || handler == ev.handler ) ) )
         handlers.splice(i, 1)
