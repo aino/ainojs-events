@@ -13,7 +13,7 @@ var Events = function() {
   this.off = function( type, handler ) {
     var i = handlers.length
     var ev
-    while ( i-- > -1 ) {
+    while ( i-- ) {
       ev = handlers[i]
       if ( ev === undefined || ( ev.type == type && ( !handler || handler == ev.handler ) ) )
         handlers.splice(i, 1)
