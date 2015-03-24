@@ -51,3 +51,7 @@ module.exports = function() {
 
   return this
 }
+
+module.exports.mixin = function(scope) {
+  return module.exports.call(scope)
+}

@@ -7,7 +7,7 @@ Example:
 
     var GreatStuff = function() {
       // Apply the mixin
-      Events.call(this)
+      Events.mixin(this)
     }
 
     GreatStuff.prototype.whatever = function() {
