@@ -1,30 +1,32 @@
-var Events = function() {
+module.exports = function() {
   
   var handlers = []
 
-  this.on = function( type, handler ) {
+  this.on = function( type, callback ) {
     handlers.push({
       type: type,
-      handler: handler
+      callback: callback
     })
     return this
   }
 
-  this.off = function( type, handler ) {
+  this.off = function( type, callback ) {
     var i = 0
     var len = handlers.length
     var ev
-    for ( ; i < len; i++ ) {
+    var filtered = []
+    for( ; i<len; i++) {
       ev = handlers[i]
-      if ( ev === undefined || ( ev.type == type && ( !handler || handler == ev.handler ) ) )
-        handlers.splice(i, 1)
+      if (!( ev === undefined || ( ev.type == type && ( typeof callback == 'undefined' || callback == ev.callback ) ) ))
+        filtered.push(ev)
     }
+    handlers = filtered
     return this
   }
 
-  this.once = function( type, handler ) {
+  this.once = function( type, callback ) {
     var fn = function() {
-      handler.call( this )
+      callback.call( this )
       this.off( type, fn )
     }.bind(this)
     return this.on( type, fn )
@@ -35,19 +37,17 @@ var Events = function() {
     var i = 0
     var len = handlers.length
     var ev
-    var obj = { type: type }
-    if ( typeof params == 'object' ) {
-      for( var prop in params )
-        obj[prop] = params[prop]
-    }
     for ( ; i < len; i++ ) {
       ev = handlers[i]
       if ( ev && ev.type == type )
-        ev.handler.call(context, obj)
+        ev.callback.call(context, params)
     }
     return this
   }
+
+  this.getEventHandlers = function() {
+    return handlers
+  }
+
   return this
 }
-
-module.exports = Events

@@ -26,7 +26,7 @@ Now your class will implement a simple event interface.
 
 Methods:
 
-- on(type, callback)
-- off(type, callback)
-- trigger(type, params)
-- once(type, callback)
+    on(type, callback)
+    off(type[, callback])
+    trigger(type[, params])
+    once(type, callback)
