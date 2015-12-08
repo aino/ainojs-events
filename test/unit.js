@@ -65,3 +65,17 @@ describe('Events.trigger', function() {
     })
   })
 })
+
+describe('Events.clearEventHandlers', function() {
+  it('Should unbind all handlers', function() {
+    var A = runner(function() {
+      this.on('foo', function(){})
+      this.on('foo', function(a){ assert.fail() })
+      this.clearEventHandlers()
+      this.trigger('foo')
+    })
+    expect(A.getEventHandlers()).to.have.length(0)
+  })
+})
+
+
